@@ -1,0 +1,248 @@
+﻿@using System.Data;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "_AdminLayout";
+    string ProductId = "";
+    string ProductTitle = "";
+    string ProductImage1 = "";
+    string ProductImage2 = "";
+    string ProductImage3 = "";
+    string ProductImage4 = "";
+    string ProductImage5 = "";
+    string ProductImagePath = "";
+    string ProductSlug = "";
+    string ProductCategory = "";
+    bool IsActive = false;
+
+    if (ViewBag.editcategory != null && (ViewBag.editcategory as DataTable).Rows.Count > 0)
+    {
+        DataRow editrow = (ViewBag.editcategory as DataTable).Rows[0];
+        ProductId = editrow["ProductId"].ToString();
+        ProductTitle = editrow["ProductTitle"].ToString();
+        ProductImage1 = editrow["ProductImage1"].ToString();
+        ProductImage2 = editrow["ProductImage2"].ToString();
+        ProductImage3 = editrow["ProductImage3"].ToString();
+        ProductImage4 = editrow["ProductImage4"].ToString();
+        ProductImage5 = editrow["ProductImage5"].ToString();
+        ProductImagePath = editrow["ProductImage1"].ToString();
+        ProductSlug = editrow["ProductSlug"].ToString();
+        ProductCategory = editrow["ProductCategory"].ToString();
+        IsActive = Convert.ToBoolean(editrow["IsActive"].ToString());
+    }
+}
+<div class="col-lg-12 mb-3">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title h5" tag="h5">Product List <a href="@Url.Action("Listing","Product")"  class="float-end btn btn-primary">Add</a></div>
+            @if (!string.IsNullOrEmpty(Context.Session.GetString("successmsg")))
+            {
+
+                <h6 class="card-subtitle text-muted">
+                    @Context.Session.GetString("successmsg")
+                    @{
+                        Context.Session.Remove("successmsg");
+                    }
+                </h6>
+            }
+
+            @if (!string.IsNullOrEmpty(Context.Session.GetString("errmsg")))
+            {
+
+                <h6 class="card-subtitle text-muted">
+                    @Context.Session.GetString("errmsg")
+                    @{
+                        Context.Session.Remove("errmsg");
+                    }
+                </h6>
+            }
+
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Product Category</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.categories != null && (ViewBag.categories as DataTable).Rows.Count > 0)
+                {
+                    foreach (DataRow dr in (ViewBag.categories as DataTable).Rows)
+                    {
+                        <tr>
+                            <td>@dr["ProductTitle"].ToString()</td>
+                            <td>@dr["ProductCategory"].ToString()</td>
+                            <td>@dr["ProductImage1"].ToString()</td>
+                            <td>@dr["IsActive"].ToString()</td>
+                            <td>
+                                <a href="@Url.Action("Listing","Product",new { ProductId = dr["ProductId"] })">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="align-middle me-1">
+                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                    </svg>
+                                    </a>
+                                    <a href="@Url.Action("Delete","Product",new { ProductId = dr["ProductId"] })">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="align-middle">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                        </svg>
+                                    </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td>No Record Found</td></tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="col-offset-2 col-lg-5" id="EditScreen" style="@(ViewBag.editcategory != null && (ViewBag.editcategory as DataTable).Rows.Count > 0 ? "":"")">
+    <div class="card">
+        <div class="card-header border-bottom">
+            <div class="card-title h5" tag="h5">Form</div>
+           
+        </div>
+        <div class="card-body">
+            <form method="post" action="@Url.Action("SaveProduct","Product")" enctype="multipart/form-data">
+                <input name="ProductId" id="ProductId" value="@ProductId" type="hidden">
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">Product Title</span>
+                    <input name="ProductTitle" id="ProductTitle" placeholder="Product Title" class="form-control" value="@ProductTitle">
+                </div>
+
+                <div class="mb-3">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text" for="formFile">File 1</span>
+                        <input type="file" name="ProductImage1" id="ProductImage1" class="form-control" />
+                        <input type="hidden" name="ProductImagePath" value="@ProductImagePath" />
+
+                    </div>
+                    <div class="imagepreview-section">
+                        @if (ProductImage1 != "")
+                        {
+                            <img src="~/@ProductImage1" id="ProductImagePreview1" class="preimage1" />
+                        }
+                        else
+                        {
+
+                            <img src="../image.png" id="ProductImagePreview1" class="preimage1" />
+                        }
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text" for="formFile">File 2</span>
+                        <input type="file" name="ProductImage2" id="ProductImage2" class="form-control" />
+                        <input type="hidden" name="ProductImagePath" value="@ProductImagePath" />
+
+                    </div>
+                    <div class="imagepreview-section">
+                        @if (ProductImage2 != "")
+                        {
+                            <img src="~/@ProductImage2" id="ProductImagePreview2" class="preimage2" />
+                        }
+                        else
+                        {
+
+                            <img src="../image.png" id="ProductImagePreview2" class="preimage2" />
+                        }
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text" for="formFile">File 3</span>
+                        <input type="file" name="ProductImage3" id="ProductImage3" class="form-control" />
+                        <input type="hidden" name="ProductImagePath" value="@ProductImagePath" />
+
+                    </div>
+                    <div class="imagepreview-section">
+                        @if (ProductImage3 != "")
+                        {
+                            <img src="~/@ProductImage3" id="ProductImagePreview3" class="preimage3" />
+                        }
+                        else
+                        {
+
+                            <img src="../image.png" id="ProductImagePreview3" class="preimage3" />
+                        }
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text" for="formFile">File 4</span>
+                        <input type="file" name="ProductImage4" id="ProductImage4" class="form-control" />
+                        <input type="hidden" name="ProductImagePath" value="@ProductImagePath" />
+
+                    </div>
+                    <div class="imagepreview-section">
+                        @if (ProductImage4 != "")
+                        {
+                            <img src="~/@ProductImage4" id="ProductImagePreview4" class="preimage4" />
+                        }
+                        else
+                        {
+
+                            <img src="../image.png" id="ProductImagePreview4" class="preimage4" />
+                        }
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text" for="formFile">File 5</span>
+                        <input type="file" name="ProductImage5" id="ProductImage5" class="form-control" />
+                        <input type="hidden" name="ProductImagePath" value="@ProductImagePath" />
+
+                    </div>
+                    <div class="imagepreview-section">
+                        @if (ProductImage5 != "")
+                        {
+                            <img src="~/@ProductImage5" id="ProductImagePreview5" class="preimage5" />
+                        }
+                        else
+                        {
+
+                            <img src="../image.png" id="ProductImagePreview5" class="preimage5" />
+                        }
+                    </div>
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">Product Category</span>
+                    <input name="ProductCategory" id="ProductCategory" placeholder="Product Category" class="form-control" value="@ProductCategory">
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">Quantity</span>
+                    <input name="Quantity" id="Quantity" placeholder="Quantity" class="form-control" value="">
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">Units</span>
+                    <input name="Units" id="Units" placeholder="Units" class="form-control" value="">
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">Price</span>
+                    <input name="Price" id="Price" placeholder="Price" class="form-control" value="">
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">Discount</span>
+                    <input name="Discount" id="Discount" placeholder="Discount" class="form-control" value="">
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">Tax</span>
+                    <input name="Tax" id="Tax" placeholder="Tax" class="form-control" value="">
+                </div>
+
+                <div class="mb-3 input-group"><span class="input-group-text"><input type="checkbox" class="form-check-input" id="IsActive" name="IsActive" @(IsActive ? "checked" : "") value="1"></span><input value="Active" class="form-control" for="IsActive" disabled readonly></div>
+
+                <input type="submit" value="Save" class="btn btn-primary" />
+
+            </form>
+        </div>
+    </div>
+</div>

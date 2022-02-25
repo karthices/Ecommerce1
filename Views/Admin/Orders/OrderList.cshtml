@@ -1,0 +1,54 @@
+﻿@using System.Data;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-lg-12 mb-3">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title h5" tag="h5">Customers List </div>
+
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Invoice No</th>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Quntity</th>
+                    <th>Unit</th>
+                    <th>Total Price</th>
+                    <th>Discount</th>
+                    <th>Taxes</th>
+                    <th>NetTotal</th>
+                    <th>OrderStatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.customers != null && (ViewBag.customers as DataTable).Rows.Count > 0)
+                {
+                    foreach (DataRow dr in (ViewBag.customers as DataTable).Rows)
+                    {
+                        <tr>
+                            <td>@dr["InvoiceNo"].ToString()</td>
+                            <td>@dr["OrderPlaced"].ToString()</td>
+                            <td>@dr["ProductTitle"].ToString()</td>
+                            <td>@dr["Quantity"].ToString()</td>
+                            <td>@dr["UnitTitle"].ToString()</td>
+                            <td>@dr["TotalPrice"].ToString()</td>
+                            <td>@dr["Discount"].ToString()</td>
+                            <td>@dr["Taxes"].ToString()</td>
+                            <td>@dr["NetTotal"].ToString()</td>
+                            <td>@dr["OrderStatus"].ToString()</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td>No Record Found</td></tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,239 @@
+﻿@using System.Data
+@{
+    var controller = ViewContext.RouteData.Values["controller"];
+    var action = ViewContext.RouteData.Values["action"];
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/admin/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/admin/css/fontawesome/all.min.css" />
+    <link rel="stylesheet" asp-append-version="true" href="~/admin/css/custom.css" />
+</head>
+
+<body>
+    <div class="page-wrapper chiller-theme toggled">
+        <div class="header-section">
+            <div class="logo-section">
+                LOGO
+            </div>
+            <div class="header-icon-section">
+                <ul class="header-ul">
+                    <li class="header-list"><a class="header-item" href="#" class=""><i class="fa fa-globe"></i></a></li>
+                    <li class="header-list"><a class="header-item" href="@Url.Action("Logout","Login")" class=""><i class="fa fa-user"></i></a></li>
+                    <li class="header-list"><a class="header-item" href="#" class=""><i class="fa fa-cog"></i></a></li>
+                    <li class="header-list"><a class="header-item" href="#" class=""><i class="fa fa-calendar"></i></a></li>
+                    <li class="header-list"><a class="header-item" href="#" class=""><i class="fa fa-envelope"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span>Dashboard</span>
+                                <span class="badge badge-pill bg-warning">New</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            Dashboard 1
+                                            <span class="badge badge-pill bg-success">Pro</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Dashboard 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Dashboard 3</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        @if (ViewBag.AdminMenus != null && (ViewBag.AdminMenus as DataTable).Rows.Count > 0)
+                        {
+                            foreach (DataRow dr in (ViewBag.AdminMenus as DataTable).Select("AdminMenuParent='0'"))
+                            {
+                                bool isactive = (ViewBag.AdminMenus as DataTable).Select("AdminMenuParent = '" + dr["AdminMenuId"].ToString() + "' and AdminMenuController='" + controller + "'").Length > 0;
+                                <li class="sidebar-dropdown @(isactive ? " active ":"")">
+                                    <a href="@(dr["AdminMenuController"].ToString() == "#"? "#":Url.Action(dr["AdminMenuAction"].ToString(),dr["AdminMenuController"].ToString()))">
+                                        <i class="fa fa-@dr["AdminMenuFavIcon"].ToString()"></i>
+                                        <span>@dr["Title"].ToString()</span>
+                                        @*<span class="badge badge-pill bg-danger">3</span>*@
+                                    </a>
+
+                                    @if ((ViewBag.AdminMenus as DataTable).Select("AdminMenuParent='" + dr["AdminMenuId"].ToString() + "'").Length > 0)
+                                    {
+                                        <div class="sidebar-submenu" style="@(isactive?"display:block":"")">
+                                            <ul>
+                                                @foreach (DataRow dr1 in (ViewBag.AdminMenus as DataTable).Select("AdminMenuParent='" + dr["AdminMenuId"].ToString() + "'"))
+                                                {
+                                                    <li>
+                                                        <a href="@(dr1["AdminMenuController"].ToString() == "#"? "#":Url.Action(dr1["AdminMenuAction"].ToString(),dr1["AdminMenuController"].ToString()))">
+                                                            @dr1["Title"].ToString()
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                            </ul>
+                                        </div>
+
+                                    }
+
+                                </li>
+                            }
+                        }
+
+
+                        <li class="">
+                            <a href="@Url.Action("listing","Categories")">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Categories</span>
+                                <span class="badge badge-pill bg-danger">Static</span>
+                            </a>
+                        </li>
+                       
+                        <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-book"></i>
+                                <span>Menu 5</span>
+                                <span class="badge badge-pill bg-primary">Beta</span>
+                            </a>
+                        </li>
+                      
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-content  -->
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge badge-pill bg-warning notification">3</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge badge-pill bg-success notification">7</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span class="badge-sonar"></span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-power-off"></i>
+                </a>
+            </div>
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <div class="page-content">
+            @RenderBody()
+        </div>
+        <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+
+    <script src="~/admin/js/jquery.js"></script>
+    <script src="~/admin/js/bootstrap.min.js"></script>
+    <script src="~/admin/js/custom.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - Ecommerce</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ecommerce</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - Ecommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+    </html>*@

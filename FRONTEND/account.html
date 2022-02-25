@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/fonts/font-awesome.css">
+    <link rel="stylesheet" href="css/custome.css">
+
+    <title>Test</title>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light top-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="images/logo.png"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Specials</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Food
+          </a>
+          <ul class="dropdown-menu megadropdown" aria-labelledby="navbarDropdown">
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" >Health & Beauty</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="#" >Household</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <input class="form-control mr-2 search-items" type="search" placeholder="Search" aria-label="Search">
+        <div class="top-icons">
+			<ul class="d-flex m-0">
+				<li class="icons search-icon"><i class="fa fa-search"></i></li>
+				<li class="icons"><i class="fa fa-user"></i></li>
+				<li class="icons"><i class="fa fa-heart-o"></i></li>
+				<li class="icons"><i class="fa fa-shopping-cart"></i></li>
+			</u>
+		</div>
+      </div>
+      
+    </div>
+  </div>
+</nav>
+    
+	
+   
+   <div class="page-container product-page">
+	
+		<div class="row cart-list">
+			
+			<div class="col-md-3">
+				<div class="account-details">
+					<img src="images/user.jpg"/>
+					<h5>User Name</h5>
+				</div>
+			</div>
+			
+			<div class="col-md-9">
+			<h4>Account Profile</h4>
+				<ul class="list-group list-group-flush">
+				  <li class="list-group-item">Shaik</li>
+				  <li class="list-group-item">shaik@gmail.com</li>
+				  <li class="list-group-item">958866</li>
+				  <li class="list-group-item">Kuwait</li>
+				  <li class="list-group-item">Khaithan</li>
+				  <li class="list-group-item">20</li>
+				  <li class="list-group-item">10</li>
+				  <li class="list-group-item">15</li>
+				  <li class="list-group-item">04</li>
+				</ul>
+			</div>
+			
+		</div>
+	
+	  
+   </div>
+    
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+	
+	<script>
+	
+		$('.product-image-section img').click(function(){
+			$('.product-add-image img').attr('src',$(this).attr('src'));
+			return false;
+		});
+		
+		
+		
+    var count = 1;
+    var countEl = document.getElementById("count");
+    function plus(){
+        count++;
+        countEl.value = count;
+    }
+    function minus(){
+      if (count > 1) {
+        count--;
+        countEl.value = count;
+      }  
+    }
+
+
+	</script>
+  </body>
+</html>

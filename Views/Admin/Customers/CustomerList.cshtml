@@ -1,0 +1,50 @@
+﻿@using System.Data;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-lg-12 mb-3">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title h5" tag="h5">Customers List </div>
+
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Defalut Address</th>
+                    <th>Address 2</th>
+                    <th>Address 3</th>
+                    <th>Postal Code</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.customers != null && (ViewBag.customers as DataTable).Rows.Count > 0)
+                {
+                    foreach (DataRow dr in (ViewBag.customers as DataTable).Rows)
+                    {
+                        <tr>
+                            <td>@dr["CustomerName"].ToString()</td>
+                            <td>@dr["CustomerPhone"].ToString()</td>
+                            <td>@dr["CustomerEmail"].ToString()</td>
+                            <td>@dr["AddressLine1"].ToString()</td>
+                            <td>@dr["AddressLine2"].ToString()</td>
+                            <td>@dr["AddressLine3"].ToString()</td>
+                            <td>@dr["PostalCode"].ToString()</td>
+                            <td>@dr["Status"].ToString()</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td>No Record Found</td></tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@using System.Data;
+@{
+    if (ViewBag.Product != null && (ViewBag.Product as DataTable).Rows.Count > 0)
+    {
+        DataRow dr = (ViewBag.Product as DataTable).Rows[0];
+        <div class="page-container product-page">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="product-gallery">
+                        <div class="product-image-section">
+                            <img src='~/@dr["ProductImage1"].ToString()' />
+                        </div>
+                        <div class="product-add-image">
+                            <img src='@dr["ProductImage2"].ToString()' width='80' height='80' />
+                            <img src='@dr["ProductImage3"].ToString()' width='80' height='80' />
+                            <img src='@dr["ProductImage4"].ToString()' width='80' height='80' />
+                            <img src='@dr["ProductImage5"].ToString()' width='80' height='80' />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="product-desc-section">
+                        <div class="product-name">@dr["ProductTitle"].ToString()</div>
+                        <div class="product-price">@String.Format("{0:#,0.000}", dr["Price"].ToString()) <b>KD</b></div>
+                        <div class="product-status"><span class="badge badge-success">Available</span></div>
+                        <div class="product-quantity d-flex">
+                            <span class="qty">QTY</span>
+                            <span>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="moins" onclick="minus()">-</span>
+                                    <input type="text" class="form-control addqnty" size="25" value="1" id="count">
+                                    <span class="input-group-text" id="plus" onclick="plus()">+</span>
+                                </div>
+                            </span>
+                        </div>
+
+                        <div class="product-butons">
+                            <button class="btn btn-info"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                            <button class="btn btn-success">Buy Now</button>
+                            <button class="btn btn-warning"><i class="fa fa-heart-o"></i></button>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        @section Scripts{
+
+            <script>
+
+                $('.product-image-section img').click(function () {
+                    $('.product-add-image img').attr('src', $(this).attr('src'));
+                    return false;
+                });
+
+
+
+                var count = 1;
+                var countEl = document.getElementById("count");
+                function plus() {
+                    count++;
+                    countEl.value = count;
+                }
+                function minus() {
+                    if (count > 1) {
+                        count--;
+                        countEl.value = count;
+                    }
+                }
+
+
+            </script>
+        }
+            }
+            else
+            {
+                <p>No product found</p>
+            }
+}

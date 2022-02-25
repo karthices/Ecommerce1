@@ -1,0 +1,60 @@
+﻿@using System.Data;
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "_AdminLayout";
+}
+<div class="col-lg-12 mb-3">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title h5" tag="h5">Customers List </div>
+
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ordered Product Id</th>
+                    <th>Order Id</th>
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Price Id</th>
+                    <th>Unit Id</th>
+                    <th>Unit Name</th>
+                    <th>Selling Price</th>
+                    <th>Offer Price</th>
+                    <th>Quantity</th>
+                    <th>TotalAmount</th>
+                    <th>Taxs</th>
+                    <th>NetTotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.ordersproduct != null && (ViewBag.ordersproduct as DataTable).Rows.Count > 0)
+                {
+                    foreach (DataRow dr in (ViewBag.ordersproduct as DataTable).Rows)
+                    {
+                        <tr>
+                            <td>@dr["OrderedProductId"].ToString()</td>
+                            <td>@dr["OrderId"].ToString()</td>
+                            <td>@dr["ProductId"].ToString()</td>
+                            <td>@dr["ProductName"].ToString()</td>
+                            <td>@dr["PriceId"].ToString()</td>
+                            <td>@dr["UnitId"].ToString()</td>
+                            <td>@dr["UnitName"].ToString()</td>
+                            <td>@dr["SellingPrice"].ToString()</td>
+                            <td>@dr["OfferPrice"].ToString()</td>
+                            <td>@dr["Quantity"].ToString()</td>
+                            <td>@dr["TotalAmount"].ToString()</td>
+                            <td>@dr["Tax"].ToString()</td>
+                            <td>@dr["NetTotal"].ToString()</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td>No Record Found</td></tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

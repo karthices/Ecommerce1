@@ -1,0 +1,514 @@
+﻿@using System.Data
+@{
+    ViewData["Title"] = "Home Page";
+}
+<main>
+    <div class="slider-section">
+        <div class="banner owl-carousel">
+            <div class="item slider-item">
+                <img src="images/banners/image-1.jpg">
+                <div class="slider-container">
+                    <div class="animated-slideup">Sample Text</div>
+                    <h1 class="animated-slideup">Sample Text</h1>
+                    <button class="btn btn-success animated-slideup">More</button>
+                </div>
+            </div>
+            <div class="item slider-item">
+                <img src="images/banners/image-2.jpg">
+                <div class="slider-container">
+                    <div class="animated-slideup">Slider-2 text</div>
+                    <h1 class="animated-slideup">slider-2 Text</h1>
+                    <button class="btn btn-danger animated-slideup">More</button>
+                </div>
+            </div>
+
+            <div class="item slider-item">
+                <img src="images/banners/image-3.jpg">
+                <div class="slider-container">
+                    <div class="animated-slideup">Slider-2 text</div>
+                    <h1 class="animated-slideup">slider-2 Text</h1>
+                    <button class="btn btn-danger animated-slideup">More</button>
+                </div>
+            </div>
+
+            <div class="item slider-item">
+                <img src="images/banners/image-4.jpg">
+                <div class="slider-container">
+                    <div class="animated-slideup">Slider-2 text</div>
+                    <h1 class="animated-slideup">slider-2 Text</h1>
+                    <button class="btn btn-danger animated-slideup">More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="my-3 p-4 servies-details">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="servies-box">
+                        <img src="images/icons/icon-1.png" />
+                        <div>
+                            <h5>Free Shiping</h5>
+                            <p>On all orders </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="servies-box">
+                        <img src="images/icons/icon-2.png" />
+                        <div>
+                            <h5>
+                                Free Returns</h4>
+                                <p>Returns are free within 9 days </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="servies-box">
+                        <img src="images/icons/icon-3.png" />
+                        <div>
+                            <h5>100% Payment Secure</h5>
+                            <p>Your payment are safe with us.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="servies-box">
+                        <img src="images/icons/icon-1.png" />
+                        <div>
+                            <h5>Support 24/7</h5>
+                            <p>Contact us 24 hours a day</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.BestSellers != null && (ViewBag.BestSellers as DataTable).Rows.Count > 0)
+        {
+            <div class="my-5 product-section">
+
+                <div class="d-flex">
+                    <h4>Best Sellers</h4>
+                </div>
+                <div class="products owl-carousel">
+                    @foreach (DataRow dr in (ViewBag.BestSellers as DataTable).Rows)
+                    {
+                        <div class="item product-item">
+                            <a href="@Url.Action("Details","Home",new { ProductId = dr["ProductId"].ToString()})" class="goto-product">
+                                <img src="@dr["ProductImage1"].ToString()" />
+                            </a>
+                            <div class="product-desc">
+                                <a class="product-text">@dr["ProductTitle"].ToString()</a>
+                                <h6 class="product-prize">Price @String.Format("{0:#,0.000}", dr["Price"].ToString()) KD</h6>
+                                <button class="btn btn-info"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                                <button class="btn btn-warning"><i class="fa fa-heart-o"></i></button>
+                            </div>
+
+                        </div>
+                    }
+
+
+                </div>
+
+            </div>
+        }
+
+        <div class="my-5 category-section">
+
+            <div class="d-flex">
+                <h4>Popular Categories</h4>
+            </div>
+            <div class="category owl-carousel">
+                <div class="item category-item">
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-1.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-2.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item category-item">
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-3.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-4.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item category-item">
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-5.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-6.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item category-item">
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-7.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                    <div class="list-category">
+                        <img src="~/images/category/thumb-8.jpg">
+                        <div class="category-desc">
+                            <a href="#" class="category-text">Category Name</a>
+                            <h6 class="no-of-products">20 Products</h6>
+                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="my-5 product-section">
+
+            <div class="d-flex">
+                <h4>New Arrivals</h4>
+            </div>
+            <div class="products owl-carousel">
+                <div class="item product-item">
+                    <img src="~/images/products/product-9.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-10.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+
+                <div class="item product-item">
+                    <img src="~/images/products/product-11.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+
+                <div class="item product-item">
+                    <img src="~/images/products/product-12.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-13.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-14.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-15.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-16.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="my-5 product-section">
+
+            <div class="d-flex">
+                <h4>Featured Products</h4>
+            </div>
+            <div class="products owl-carousel">
+                <div class="item product-item">
+                    <img src="~/images/products/product-17.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-18.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+
+                <div class="item product-item">
+                    <img src="~/images/products/product-19.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+
+                <div class="item product-item">
+                    <img src="~/images/products/product-20.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-22.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-23.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-7.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-8.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="my-5 product-section">
+
+            <div class="d-flex">
+                <h4>Recently Added</h4>
+            </div>
+            <div class="products owl-carousel">
+                <div class="item product-item">
+                    <img src="~/images/products/product-13.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-15.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+
+                <div class="item product-item">
+                    <img src="~/images/products/product-8.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+
+                <div class="item product-item">
+                    <img src="~/images/products/product-20.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-22.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-7.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-6.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+                <div class="item product-item">
+                    <img src="~/images/products/product-8.jpg">
+                    <div class="product-desc">
+                        <a>Test</a>
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+@section Scripts{
+    <script type="text/javascript">
+        $('.banner').owlCarousel({
+            loop: true,
+            nav: false,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            item: 1,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        })
+
+        $('.products').owlCarousel({
+            autoplay: false,
+            loop: false,
+            smartSpeed: 1000,
+            nav: true,
+            dots: false,
+            margin: 30,
+            responsive: {
+                0: {
+                    items: 1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360: {
+                    items: 1,
+                    autoplay: true,
+                    loop: true,
+                },
+                500: {
+                    items: 2,
+                    autoplay: true,
+                    loop: true,
+
+                },
+                768: {
+                    items: 3,
+                },
+                992: {
+                    items: 4,
+                },
+                1200: {
+                    items: 5,
+                }
+            }
+        })
+
+        $('.category').owlCarousel({
+            autoplay: false,
+            smartSpeed: 1000,
+            loop: false,
+            nav: true,
+            dots: false,
+            margin: 30,
+            responsive: {
+                0: {
+                    items: 1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360: {
+                    items: 1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576: {
+                    items: 1,
+                    autoplay: true,
+                    loop: true,
+
+                },
+                767: {
+                    items: 2,
+                },
+                992: {
+                    items: 3,
+                },
+                1200: {
+                    items: 3,
+                }
+            }
+        });
+    </script>
+}

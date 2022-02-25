@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/fonts/font-awesome.css">
+    <link rel="stylesheet" href="css/custome.css">
+
+    <title>Test</title>
+  </head>
+  <body>
+    
+   <div class="login-section">
+		<ul class="nav nav-tabs tab-section" id="myTab" role="tablist">
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+			<a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+		  </li>
+		</ul>
+		
+        <div class="form-signin">
+			<div class="text-center mb-4">
+				<img src="images/logo.png"/>
+			</div>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+				
+				  
+
+				  <div class="form-label-group">
+					<input type="email" id="loginemail" class="form-control" placeholder="Email address" required="" runat="server">
+					<label for="loginemail">Email address</label>
+				  </div>
+
+				  <div class="form-label-group">
+					<input type="password" id="loginpassword" class="form-control" placeholder="Password" required="" runat="server">
+					<label for="loginpassword">Password</label>
+				  </div>
+
+				  <div class="checkbox mb-3 d-flex">
+					<label class="mr-auto">
+					  <input type="checkbox" value="remember-me" id="loginredme" runat="server"> Remember me
+					</label>
+					  <a href="forgot.html">Forgot Password?</a>
+				  </div>
+				  <button class="btn btn-lg btn-primary btn-block" type="submit" id="loginbtn" runat="server">Sign in</button>
+				  <div class="mt-2 mb-2 alert alert-danger text-center" id="loginerror" runat="server">Error</div>
+			</div>
+			  <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+				  
+				  <div class="form-label-group">
+					<input type="email" id="regemail" class="form-control" placeholder="Email address" required="" runat="server">
+					<label for="regemail">Email address</label>
+				  </div>
+
+				  <div class="form-label-group">
+					<input type="email" id="regmobile" class="form-control" placeholder="Mobile" required="" runat="server">
+					<label for="regmobile">Mobile</label>
+				  </div>
+
+				  <div class="form-label-group">
+					<input type="password" id="regpassword" class="form-control" placeholder="Password" required="" runat="server">
+					<label for="regpassword">Password</label>
+				  </div>
+
+				  <div class="checkbox mb-3 d-flex">
+					<label class="mr-auto">
+					  <input type="checkbox" value="remember-me" id="regredme" runat="server"> Remember me
+					</label>
+				  </div>
+				  <button class="btn btn-lg btn-primary btn-block" type="submit" id="regbtn" runat="server">Sign in</button>
+				  <div class="mt-2 mb-2 alert alert-danger text-center" id="regerror" runat="server">Error</div>
+		  </div>
+		</div>
+		
+		
+        </div>
+    </div>
+	
+	
+  
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

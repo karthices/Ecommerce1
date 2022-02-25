@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/fonts/font-awesome.css">
+    <link rel="stylesheet" href="css/custome.css">
+
+    <title>Test</title>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light top-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="images/logo.png"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Specials</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Food
+          </a>
+          <ul class="dropdown-menu megadropdown" aria-labelledby="navbarDropdown">
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+            <div class="col-md-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </div>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" >Health & Beauty</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="#" >Household</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <input class="form-control mr-2 search-items" type="search" placeholder="Search" aria-label="Search">
+        <div class="top-icons">
+			<ul class="d-flex m-0">
+				<li class="icons search-icon"><i class="fa fa-search"></i></li>
+				<li class="icons"><i class="fa fa-user"></i></li>
+				<li class="icons"><i class="fa fa-heart-o"></i></li>
+				<li class="icons"><i class="fa fa-shopping-cart"></i></li>
+			</u>
+		</div>
+      </div>
+      
+    </div>
+  </div>
+</nav>
+    
+	
+   
+   <div class="page-container product-page">
+	
+		<div class="row cart-list">
+			<div class="col-md-9">
+			<h4 class="mb-3">Billing Address</h4>
+				<div class="needs-validation" novalidate="">
+				<div class="row g-3">
+				  <div class="col-sm-6">
+					<label for="firstName" class="form-label">First name</label>
+					<input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+					<div class="invalid-feedback">
+					  Valid first name is required.
+					</div>
+				  </div>
+
+				  <div class="col-sm-6">
+					<label for="lastName" class="form-label">Last name</label>
+					<input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+					<div class="invalid-feedback">
+					  Valid last name is required.
+					</div>
+				  </div>
+
+				  <div class="col-6">
+					<label for="email" class="form-label">Email </label>
+					<input type="email" class="form-control" id="email" placeholder="you@example.com"required="">
+					<div class="invalid-feedback">
+					  Please enter a valid email address for shipping updates.
+					</div>
+				  </div>
+
+				  <div class="col-6">
+					<label for="address" class="form-label">Address</label>
+					<input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+					<div class="invalid-feedback">
+					  Please enter your shipping address.
+					</div>
+				  </div>
+				  
+				  <div class="col-6">
+					<label for="country" class="form-label">City</label>
+					<select class="form-select" id="country" required="">
+					  <option value="">Choose...</option>
+					  <option>Kuwait</option>
+					</select>
+					<div class="invalid-feedback">
+					  Please select a valid country.
+					</div>
+				  </div>
+
+				  <div class="col-6">
+					<label for="state" class="form-label">State</label>
+					<select class="form-select" id="state" required="">
+					  <option value="">Choose...</option>
+					  <option>Farwaniya</option>
+					  <option>Jahar</option>
+					  <option>Jahar</option>
+					</select>
+					<div class="invalid-feedback">
+					  Please provide a valid state.
+					</div>
+				  </div>
+				  
+				  <div class="col-6">
+					<label for="zip" class="form-label">Area</label>
+					<input type="text" class="form-control" id="area" placeholder="" required="">
+					<div class="invalid-feedback">
+					  Zip code required.
+					</div>
+				  </div>
+				
+				
+				<div class="col-6">
+					<label for="zip" class="form-label">Block</label>
+					<input type="text" class="form-control" id="block" placeholder="" required="">
+					<div class="invalid-feedback">
+					  Zip code required.
+					</div>
+				  </div>
+				
+				
+
+				  <div class="col-6">
+					<label for="zip" class="form-label">Street</label>
+					<input type="text" class="form-control" id="street" placeholder="" required="">
+					<div class="invalid-feedback">
+					  Zip code required.
+					</div>
+				  </div>
+				
+				
+				<div class="col-md-3">
+					<label for="zip" class="form-label">Building No</label>
+					<input type="text" class="form-control" id="buildingno" placeholder="" required="">
+					<div class="invalid-feedback">
+					  Zip code required.
+					</div>
+				  </div>
+				
+				
+				<div class="col-md-3">
+					<label for="zip" class="form-label">House No</label>
+					<input type="text" class="form-control" id="houseno" placeholder="" required="">
+					<div class="invalid-feedback">
+					  Zip code required.
+					</div>
+				  </div>
+				</div>
+
+				<hr class="my-4">
+
+				<div class="form-check">
+				  <input type="checkbox" class="form-check-input" id="same-address">
+				  <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+				</div>
+
+				<div class="form-check">
+				  <input type="checkbox" class="form-check-input" id="save-info">
+				  <label class="form-check-label" for="save-info">Save this information for next time</label>
+				</div>
+
+				<button class="btn btn-info btn-lg btn-block" type="submit">Continue to checkout</button>
+			  </div>
+					
+			</div>
+			
+			<div class="col-md-3">
+				<div class="checkout-detais">
+					<div class="order-summary">
+						<h4 class="summary-text">Order Summary</h4>
+						<div class="d-flex">
+							<span class="w-50">Sub Total (2 Items)</span>
+							<span class="w-50 text-right">20.000 KD</span>
+						</div>
+						
+						<div class="d-flex">
+							<span class="w-50">Delevery Charges</span>
+							<span class="w-50 text-right">2.000 KD</span>
+						</div>
+						
+						<div class="d-flex summary-total">
+							<span class="w-50">Total</span>
+							<span class="w-50 text-right">22.000 KD</span>
+						</div>
+						
+						<button class="btn btn-secondary w-100 mt-2"> Proceed Payment</button>
+					</div>
+					
+					<div class="summary-desc">
+						<p>We are a team of designers and developers that create high quality</p>
+						<p>We are a team of designers and developers that create high quality</p>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	
+	  
+   </div>
+    
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+	
+	<script>
+	
+		$('.product-image-section img').click(function(){
+			$('.product-add-image img').attr('src',$(this).attr('src'));
+			return false;
+		});
+		
+		
+		
+    var count = 1;
+    var countEl = document.getElementById("count");
+    function plus(){
+        count++;
+        countEl.value = count;
+    }
+    function minus(){
+      if (count > 1) {
+        count--;
+        countEl.value = count;
+      }  
+    }
+
+
+	</script>
+  </body>
+</html>

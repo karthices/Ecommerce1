@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/fonts/font-awesome.css">
+    <link rel="stylesheet" href="css/custome.css">
+
+    <title>Test</title>
+  </head>
+  <body>
+    
+   <div class="forgot-section">
+        <div class="form-signin">
+			 <div class="text-center mb-4">
+				<img src="images/logo.png"/>
+			</div>
+
+          <div class="form-label-group">
+            <input type="email" id="loginemail" class="form-control" placeholder="Email address" required="" runat="server">
+            <label for="loginemail">Email address</label>
+          </div>
+
+          <div class="form-label-group">
+            <input type="password" id="fnewpassword" class="form-control" placeholder="New Password" required="" runat="server">
+            <label for="fnewpassword">New Password</label>
+          </div>
+
+            <div class="form-label-group">
+            <input type="password" id="confpassword" class="form-control" placeholder="Confirm Password" required="" runat="server">
+            <label for="confpassword">Confirm Password</label>
+          </div>
+
+          <div class="checkbox mb-3 d-flex">
+            <label class="mr-auto">
+              <input type="checkbox" value="remember-me" id="forgotredme" runat="server"> Remember me
+            </label>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" id="loginbtn" runat="server">Submit</button>
+          <div class="mt-2 mb-2 alert alert-danger text-center" id="forgoterror" runat="server">Error</div>
+        </div>
+    </div>
+	
+  
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
