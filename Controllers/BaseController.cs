@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,17 @@ namespace Ecommerce.Controllers
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 ViewBag.AdminMenus = dt;
+
+                if (HttpContext.Session.GetString("RandomCustomer") != null)
+                {
+                    string RandomCustomer = HttpContext.Session.GetString("RandomCustomer");
+                    cmd = new SqlCommand("select sum(quantity) as count from cart where isprocessed=0 and randomcustomer='" + RandomCustomer + "'", conn);
+                    dt = new DataTable();
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                        ViewBag.cartcount = dt.Rows[0]["count"];
+                }
 
 
 

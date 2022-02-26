@@ -21,9 +21,10 @@ END
 
 
 --2. Categories
-IF  NOT EXISTS (SELECT * FROM sys.objects 
+IF EXISTS (SELECT * FROM sys.objects 
 WHERE object_id = OBJECT_ID('[dbo].[Categories]') AND type in (N'U'))
-BEGIN
+Drop table Categories;
+
 CREATE TABLE [dbo].[Categories](
     CategoriesId int IDENTITY(1,1) NOT NULL,
     CategoriesTitle varchar(100) NOT NULL,
@@ -31,10 +32,10 @@ CREATE TABLE [dbo].[Categories](
     CategoriesImage varchar(255) NOT NULL,
 	CategoriesSlug varchar(255) NOT NULL,
 	IsActive bit,
+	IsPopular bit,
     PRIMARY KEY (CategoriesId)
-) 
+); 
 
-END
 
 --2. Products
 
@@ -116,18 +117,18 @@ CREATE TABLE [dbo].[CustomersAddress](
 
 END
 
-IF  NOT EXISTS (SELECT * FROM sys.objects 
+IF EXISTS (SELECT * FROM sys.objects 
 WHERE object_id = OBJECT_ID('[dbo].[Cart]') AND type in (N'U'))
-BEGIN
+drop table cart;
 CREATE TABLE [dbo].[Cart](
     CartId int IDENTITY(1,1) NOT NULL,
     RandomCustomer varchar (100) NOT NULL,
+	ProductId int not null,
+	IsLoggedIn bit,
 	Quantity Int  NOT NULL,
 	IsProcessed bit,
     PRIMARY KEY (CartId)
-) 
-
-END
+);
 
 IF  NOT EXISTS (SELECT * FROM sys.objects 
 WHERE object_id = OBJECT_ID('[dbo].[Orders]') AND type in (N'U'))
@@ -228,3 +229,14 @@ CREATE TABLE [dbo].[AdminMenus](
 ) 
 END
 
+--IF  NOT EXISTS (SELECT * FROM sys.objects 
+--WHERE object_id = OBJECT_ID('[dbo].[ProductListing]') AND type in (N'U'))
+--BEGIN
+--CREATE TABLE [dbo].[ProductListing](
+--    ProductListingId int IDENTITY(1,1) NOT NULL,
+--	ProductId Int  NOT NULL,
+--	ListingType Int NOT NULL,
+--	PRIMARY KEY (ProductListingId)
+--) 
+
+--END

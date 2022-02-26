@@ -1,0 +1,112 @@
+﻿@using System.Data
+<div class="page-container productlist-page">
+
+    <div class="product-filter">
+        <h4 class="filter">Filter</h4>
+
+        <div class="prd-category">
+
+            <h5>Catergorys</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category1">
+                <label class="form-check-label" for="category1">Category 1</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category2">
+                <label class="form-check-label" for="category2">Category 2</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category3">
+                <label class="form-check-label" for="category3">Category 3</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category4">
+                <label class="form-check-label" for="category4">Category 4</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="category5">
+                <label class="form-check-label" for="category5">Category 5</label>
+            </div>
+        </div>
+
+        <div class="prd-price mt-4">
+            <h5>Price</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="price1">
+                <label class="form-check-label" for="price1">0KD - 10.000 KD</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="price2">
+                <label class="form-check-label" for="price2">11KD - 20.000 KD</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="price3">
+                <label class="form-check-label" for="price3">21KD - 300.000 KD</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="price4">
+                <label class="form-check-label" for="price4">31KD - 40.000 KD</label>
+            </div>
+        </div>
+
+        <div class="prd-brand mt-4">
+            <h5>Brand</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="brand1">
+                <label class="form-check-label" for="brand1">Brand 1</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="brand2">
+                <label class="form-check-label" for="brand2">Brand 2</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="brand3">
+                <label class="form-check-label" for="brand3">Brand 3</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="brand4">
+                <label class="form-check-label" for="brand4">Brand 4</label>
+            </div>
+        </div>
+    </div>
+    <div class="product-lists">
+        <div class="row">
+            @if (ViewBag.SearchResult != null && (ViewBag.SearchResult as DataTable).Rows.Count > 0)
+            {
+                @foreach (DataRow dr in (ViewBag.SearchResult as DataTable).Rows)
+                {
+
+                    <div class="col-md-3">
+                        <div class="prd-list ">
+                            <a href="@Url.Action("Details","Home",new { ProductId = dr["ProductId"].ToString()})" class="goto-product">
+                                <img src="@Url.Content("~/"+dr["ProductImage1"].ToString())" />
+                            </a>
+                            <div class="product-desc">
+                                <a class="product-text">@dr["ProductTitle"].ToString()</a>
+                                <h6 class="product-prize">Price @String.Format("{0:#,0.000}", dr["Price"].ToString()) KD</h6>
+                                <button class="btn btn-info"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                                <button class="btn btn-warning"><i class="fa fa-heart-o"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-12">
+                    No Products avialable
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+
+</div>

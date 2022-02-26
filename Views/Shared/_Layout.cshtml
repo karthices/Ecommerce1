@@ -72,7 +72,15 @@
                             <li class="icons search-icon"><i class="fa fa-search"></i></li>
                             <li class="icons"><i class="fa fa-user"></i></li>
                             <li class="icons"><i class="fa fa-heart-o"></i></li>
-                            <li class="icons"><i class="fa fa-shopping-cart"></i></li>
+                            <li class="icons">
+                                <a href="@Url.Action("cart","Home")">
+                                <i class="fa fa-shopping-cart"></i>
+                                @if (ViewBag.cartcount != null && ViewBag.cartcount > 0)
+                                {
+                                    <span id="cartcount" style="color:#fff;">@ViewBag.cartcount</span>
+                                }
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -86,8 +94,11 @@
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+        const baseurl = "@Url.Content("~/")";
+    </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    @await RenderSectionAsync("Scripts", required: false);
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

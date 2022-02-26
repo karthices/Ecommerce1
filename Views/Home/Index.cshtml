@@ -97,7 +97,7 @@
                     {
                         <div class="item product-item">
                             <a href="@Url.Action("Details","Home",new { ProductId = dr["ProductId"].ToString()})" class="goto-product">
-                                <img src="@dr["ProductImage1"].ToString()" />
+                                <img src="@Url.Content(dr["ProductImage1"].ToString())" />
                             </a>
                             <div class="product-desc">
                                 <a class="product-text">@dr["ProductTitle"].ToString()</a>
@@ -115,88 +115,37 @@
             </div>
         }
 
-        <div class="my-5 category-section">
+        @if (ViewBag.Popular != null && (ViewBag.Popular as DataTable).Rows.Count > 0)
+        {
+            <div class="my-5 category-section">
 
-            <div class="d-flex">
-                <h4>Popular Categories</h4>
-            </div>
-            <div class="category owl-carousel">
-                <div class="item category-item">
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-1.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
-                        </div>
-                    </div>
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-2.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
-                        </div>
-                    </div>
+                <div class="d-flex">
+                    <h4>Popular Categories</h4>
                 </div>
-                <div class="item category-item">
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-3.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                <div class="category owl-carousel">
+
+                    @foreach (DataRow dr in (ViewBag.Popular as DataTable).Rows)
+                    {
+                        <div class="item category-item">
+                            <div class="list-category">
+                                <img src="@Url.Content(dr["CategoriesImage"].ToString())">
+                                <div class="category-desc">
+                                    <a href="@Url.Action("Listing","Home",new { ListingType="Categories",listingid = dr["CategoriesId"].ToString() })" class="category-text">@dr["CategoriesTitle"].ToString()</a>
+                                    <h6 class="no-of-products">@dr["productcount"].ToString() Products</h6>
+                                    <button class="btn btn-outline-success btn-rounded btn-small">More</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-4.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item category-item">
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-5.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
-                        </div>
-                    </div>
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-6.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item category-item">
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-7.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
-                        </div>
-                    </div>
-                    <div class="list-category">
-                        <img src="~/images/category/thumb-8.jpg">
-                        <div class="category-desc">
-                            <a href="#" class="category-text">Category Name</a>
-                            <h6 class="no-of-products">20 Products</h6>
-                            <button class="btn btn-outline-success btn-rounded btn-small">More</button>
-                        </div>
-                    </div>
+                    }
+
+
+
+
                 </div>
 
             </div>
 
-        </div>
+        }
 
 
 
