@@ -45,7 +45,7 @@ namespace Ecommerce.Controllers
                     da = new SqlDataAdapter(cmd);
                     da.Fill(dt);
                     if (dt.Rows.Count > 0)
-                        ViewBag.cartcount = dt.Rows[0]["count"];
+                        ViewBag.cartcount = Convert.ToInt32(dt.Rows[0]["count"]);
                 }
 
 

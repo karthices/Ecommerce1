@@ -1,6 +1,11 @@
-﻿<div class="page-container product-page">
+﻿@using System.Data;
+<div class="page-container product-page">
+    @if(ViewBag.Cart != null && (ViewBag.Cart as DataTable).Rows.Count > 0)
+            {
 
-    <div class="row cart-list">
+
+
+<div class="row cart-list">
         <div class="col-md-9">
             <table class="table table-bordered table-cart">
                 <thead>
@@ -13,66 +18,36 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-
                 <tbody>
-                    <tr>
-                        <td><img src="images/products/product-2.jpg" /></td>
-                        <td>Product Name 1</td>
-                        <td class="text-right">10.00 KD</td>
-                        <td>
-                            <div class="input-group">
-                                <span class="input-group-text" id="moins" onclick="minus()">-</span>
-                                <input type="text" class="form-control addqnty" size="25" value="1" id="count">
-                                <span class="input-group-text" id="plus" onclick="plus()">+</span>
-                            </div>
-                        </td>
-                        <td class="text-right">50.000 KD</td>
-                        <td class="text-center"><button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></button></td>
-                    </tr>
 
-                    <tr>
-                        <td><img src="images/products/product-14.jpg" /></td>
-                        <td>Product Name 1</td>
-                        <td class="text-right">10.00 KD</td>
-                        <td>
-                            <div class="input-group">
-                                <span class="input-group-text" id="moins" onclick="minus()">-</span>
-                                <input type="text" class="form-control addqnty" size="25" value="1" id="count">
-                                <span class="input-group-text" id="plus" onclick="plus()">+</span>
-                            </div>
-                        </td>
-                        <td class="text-right">50.000 KD</td>
-                        <td class="text-center"><button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></button></td>
-                    </tr>
+                    @foreach(DataRow dr in (ViewBag.Cart as DataTable).Rows)
+                {
 
-                    <tr>
-                        <td><img src="images/products/product-16.jpg" /></td>
-                        <td>Product Name 1</td>
-                        <td class="text-right">10.00 KD</td>
+                    <tr data-id="@dr["ProductId"].ToString()">
+                        <td><img src="@Url.Content("~/"+dr["ProductImage1"].ToString())" /></td>
+                        <td>
+                            <a href="@Url.Action("Details","Home",new { ProductId = dr["ProductId"].ToString()})" class="goto-product">
+                            @dr["ProductTitle"].ToString()
+                            </a>
+                        </td>
+                        <td class="text-right">@String.Format("{0:#,0.000}", dr["Price"]) KD</td>
                         <td>
                             <div class="input-group">
-                                <span class="input-group-text" id="moins" onclick="minus()">-</span>
-                                <input type="text" class="form-control addqnty" size="25" value="1" id="count">
-                                <span class="input-group-text" id="plus" onclick="plus()">+</span>
+                                <span class="input-group-text qtychange minus">-</span>
+                                <input type="text" class="form-control addqnty" size="25" value="@Convert.ToInt32(dr["Quantity"].ToString())" id="count">
+                                <span class="input-group-text qtychange plus">+</span>
                             </div>
                         </td>
-                        <td class="text-right">50.000 KD</td>
-                        <td class="text-center"><button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></button></td>
+                        <td class="text-right">
+                        <span class="updatesubtotal">
+                        @String.Format("{0:#,0.000}",Convert.ToInt32(dr["Quantity"].ToString()) * Convert.ToDecimal(dr["Price"].ToString()))
+                             </span>
+                        KD</td>
+                        <td class="text-center"><button class="btn btn-outline-danger btn-sm removecart"><i class="fa fa-trash-o"></i></button></td>
                     </tr>
-                    <tr>
-                        <td><img src="images/products/product-12.jpg" /></td>
-                        <td>Product Name 1</td>
-                        <td class="text-right">10.00 KD</td>
-                        <td>
-                            <div class="input-group">
-                                <span class="input-group-text" id="moins" onclick="minus()">-</span>
-                                <input type="text" class="form-control addqnty" size="25" value="1" id="count">
-                                <span class="input-group-text" id="plus" onclick="plus()">+</span>
-                            </div>
-                        </td>
-                        <td class="text-right">50.000 KD</td>
-                        <td class="text-center"><button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></button></td>
-                    </tr>
+                }
+
+                    
                 </tbody>
             </table>
         </div>
@@ -108,7 +83,7 @@
 
         <div class="col-md-12 d-flex">
             <div class="col mr-auto">
-                <button class="btn btn-primary">Continue Shoping</button>
+                <a href="@Url.Action("Index","Home")" class="btn btn-primary">Continue Shoping</a>
             </div>
             <div class="col text-right">
                 <button class="btn btn-success">Update Cart</button>
@@ -116,6 +91,15 @@
             </div>
         </div>
     </div>
+            }
+            else
+            {
+                <p>No Items in Cart</p>
+
+                <div class="col mr-auto">
+                <a href="@Url.Action("Index","Home")" class="btn btn-primary">Continue Shoping</a>
+            </div>
+            }
 
 
 </div>

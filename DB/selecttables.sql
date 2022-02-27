@@ -11,7 +11,15 @@ select * from Categories;
 
 select * from Categories order by CategoriesId desc;
 
+update 
+
+select *,(select count(*) from products where ProductCategory = CategoriesId) as productcount  from categories where ispopular=1
+
 
 
 select c1.categoriesId,c1.categoriestitle,c2.categoriestitle as parentcategory,c1.categoriesimage,c1.isactive from Categories c1
 left join Categories c2 on c2.categoriesId=c1.parentcategory order by c1.CategoriesId desc;
+
+select * from cart
+
+delete from cart 
